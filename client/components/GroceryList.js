@@ -1,7 +1,7 @@
 import React from "react";
 import GroceryItem from "./GroceryItem";
 import { connect } from "react-redux";
-import { toggleGrocery, SHOW_ACTIVE, SHOW_BOUGHT } from "../store"
+import { toggleGrocery, setQuantity, SHOW_ACTIVE, SHOW_BOUGHT } from "../store"
 
 const GroceryList = (props) => (
   <ul>
@@ -9,6 +9,7 @@ const GroceryList = (props) => (
       <GroceryItem
         key={grocery.id}
         onClick={props.toggleGrocery}
+        setQuantity={props.setQuantity}
         {...grocery}
       />
     ))}
@@ -27,7 +28,8 @@ const mapStateToProps = (state) => {
   return { groceries: state.groceries}
 }
 const mapDispatchToProps = (dispatch) => ({
-  toggleGrocery: (id) => dispatch(toggleGrocery(id))
+  toggleGrocery: (id) => dispatch(toggleGrocery(id)),
+  setQuantity: (id, quantity) => dispatch(setQuantity(id, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroceryList);
