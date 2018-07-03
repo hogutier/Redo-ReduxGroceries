@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import loggerMiddleware from 'redux-logger'
 
 
@@ -97,7 +97,9 @@ const reducer = (state = initialState, action) => {
 }
 
 // STORE
-const store = createStore(reducer, applyMiddleware(loggerMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(loggerMiddleware)));
 
 //MANUAL TEST (TEMPORARILY HARD CODED DISPATCHES)
 //store.dispatch(addGrocery("Milk"));
