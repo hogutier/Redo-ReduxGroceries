@@ -98,8 +98,6 @@ const reducer = (state = initialState, action) => {
 }
 
 // STORE
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(loggerMiddleware)));
 
 //MANUAL TEST (TEMPORARILY HARD CODED DISPATCHES)
